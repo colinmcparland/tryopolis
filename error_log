@@ -1,2 +1,0 @@
-[26-Jun-2017 23:28:15 UTC] PHP Fatal error:  Call to undefined function wp_Logout_url() in php shell code on line 1
-[26-Jun-2017 23:28:18 UTC] PHP Fatal error:  Call to undefined function wp_logout_url() in php shell code on line 1

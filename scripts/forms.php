@@ -1,5 +1,33 @@
 <?
+include(dirname(__FILE__) . '/../mailchimp.php');
+use \DrewM\MailChimp\MailChimp;
 
+/*  Add subscriber to the mailchimp list when footer form submitted  */
+if(isset($_POST['footer-form-submit'])) {
+
+    $mc_key = getenv("MAILCHIMP_API_KEY");
+
+	$MailChimp = new MailChimp($mc_key);
+
+	$list_id = '38b9776b83';
+
+	$result = $MailChimp->post("lists/$list_id/members", [
+		'email_address' => $_POST['footer-email'],
+		'merge_fields' => ['FNAME'=>$_POST['footer-fname'], 'LNAME'=>$_POST['footer-lname'], 'MESSAGE'=>$_POST['footer-message']],
+		'status'        => 'subscribed'
+	]);
+?>
+	<script>
+	jQuery(document).ready(function()	{
+		jQuery(".footer-form .submitplaceholder").text("Thank you!  Your message has been sent.");
+		var scrolllocation = jQuery(".footer-form").offset().top;
+		jQuery("html, body").animate({
+			scrollTop: scrolllocation
+		})
+	})
+	</script>
+<?
+}
 
 
 /*  Register a mentor from the sign up box  */
@@ -161,6 +189,8 @@ if(isset($_POST['new-event-submit'])) {
 
     $venue_id = tb_add_eventbrite_venue($venue, $token);
 
+    var_dump($venue_id);
+
     $venue_id = $venue_id['id'];
 
 	/*  Add the event to EB  */
@@ -169,6 +199,9 @@ if(isset($_POST['new-event-submit'])) {
 	/*  Add tickets to the event  */
 	$quantity = $_POST['new-event-ticket-quantity'];
 	$newevent = tb_add_eventbrite_event_tickets($event['id'], $token, $quantity);
+
+	/*  Publish the event!  */
+	tb_publish_eb_event($token, $event['id']);
 
 	/*  Add post to Wordpress */
 	$post = array(
@@ -202,7 +235,7 @@ if(isset($_POST['new-event-submit'])) {
 	tb_add_event_to_db($event['id'], $organizer_id, $postID);
 
 	/*  Take user to the new event  */
-	wpƒ_safe_redirect(get_the_permalink($postID));
+	wp_safe_redirect(get_the_permalink($postID));
 
 }
 

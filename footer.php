@@ -1,29 +1,31 @@
+<a name="footer-form"></a>
 <div class="formarea">
-	<form class="narrow">
+	<form class="narrow footer-form" method="POST">
 		<h2>Any More Questions?</h2>
 		<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
 		<div class="flex-left">
 			<div class="inputarea">
 				<label>First Name:</label>
-				<input type="text" name="fname" />
+				<input type="text" name="footer-fname" />
 			</div>
 			<div class="inputarea">
 				<label>Last Name:</label>
-				<input type="text" name="lname" />
+				<input type="text" name="footer-lname" />
 			</div>
 			<div class="inputarea">
 				<label>Email:</label>
-				<input type="email" name="email" />
+				<input type="email" name="footer-email" />
 			</div>
-			<div class="inputarea">
+			<!-- <div class="inputarea">
 				<input type="checkbox" />
 				<label class="forcheckbox">&nbsp;Send Tryopolis newsletters to my inbox!</label>
-			</div>
+			</div> -->
 		</div>
 		<div class="flex-right">
-			<textarea placeholder="Your message here..." rows='7'></textarea>
-			<div class="g-recaptcha" data-sitekey="6LeQLCIUAAAAABQ997HwTX7h5h9VByvKw46PjOwf"></div>
+			<textarea placeholder="Your message here..." rows='7' name="footer-message"></textarea>
+		<!-- 	<div class="g-recaptcha" data-sitekey="6LeQLCIUAAAAABQ997HwTX7h5h9VByvKw46PjOwf"></div> -->
 			<div class="submitplaceholder">Submit</div>
+			<input type="submit" style="display: none;" name="footer-form-submit" />
 		</div>
 	</form>
 	<div class="social narrow">

@@ -1,6 +1,6 @@
 <?
 /*  Template Name:  Student Dashboard  */
-include('role-redirects/student-dashboard.php'); 
+include(dirname(__FILE__) . '/../role-redirects/student-dashboard.php'); 
 get_header();
 ?>
 <div class="page-header-container header-student-dashboard">

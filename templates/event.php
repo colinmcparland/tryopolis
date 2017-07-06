@@ -12,7 +12,7 @@ else {
 
 get_header();
 
-$event = tb_theme_get_event_by_id($GLOBALS['event_id']);
+$event = tb_get_event_by_id($GLOBALS['event_id']);
 var_dump($event);
 
 get_footer();

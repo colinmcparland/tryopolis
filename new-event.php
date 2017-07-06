@@ -1,6 +1,6 @@
 <?
 /*  Template Name:  New Event  */
-include(dirname(__FILE__) . '/../role-redirects/mentor-dashboard.php'); 
+include(dirname(__DIR__) . '/../role-redirects/mentor-dashboard.php'); 
 get_header();
 ?>
 
@@ -14,7 +14,7 @@ get_header();
 <form method="POST" class="dropzone" enctype="multipart/form-data">
 <label>Event Name<br /><input type="text" placeholder="My Awesome Event" name="new-event-name"></label>
 <label>Event Description<br /><textarea name="new-event-desc" rows=8></textarea></label>
-<label>Time zone<br /><? include(dirname(__FILE__) . '/../forms/new-event-timezone-select.php'); ?></label>
+<label>Time zone<br /><? include(dirname(__DIR__) . '/../forms/new-event-timezone-select.php'); ?></label>
 <label class="half">Start Date<br /><input type="text" class="datepicker" name="new-event-startdate" /></label>
 <label class="half">Start Time<br /><input type="text" class="timepicker" name="new-event-starttime" /></label>
 <label class="half">End Date<br /><input type="text" class="datepicker" name="new-event-enddate" /></label>

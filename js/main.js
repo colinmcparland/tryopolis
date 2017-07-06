@@ -77,6 +77,9 @@
 			$(this).next().click();
 		})
 
+		$(".footer-form .submitplaceholder").click(function()	{
+			$(".footer-form input[type=submit]").click();		})
+
 		//  Slide down the mobile menu
 		$(".menu-icon").click(function()	{
 			if($("#menu-main-menu").is(":hidden")) {

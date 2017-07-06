@@ -1,6 +1,6 @@
 <?
 /*  Template Name: Mentor Dashboard  */
-include('role-redirects/mentor-dashboard.php');
+include(dirname(__FILE__) . '/../role-redirects/mentor-dashboard.php');
 get_header();
 ?>
 

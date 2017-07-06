@@ -33,10 +33,6 @@ function theme_enqueue_custom_scripts()	{
 
 	wp_enqueue_script('jquery-timepicker-script');
 
-	wp_register_script('dropzone', '/js/dropzone.js');
-
-	wp_enqueue_script('dropzone');
-
 }
 
 /*  Get all the events from the database and return each row in an array.  */
@@ -668,5 +664,31 @@ function add_logout_link( $items, $args ) {
         $items .= '<li><a href="'. wp_logout_url('/home') .'">logout</a></li>';
     }
     return $items;
+}
+
+
+/*  Publish an event in EB  */
+function tb_publish_eb_event($token, $id) {
+	$url = 'https://www.eventbriteapi.com/v3/events/' . $id . '/publish/?token=' . $token;
+
+	$cURL = curl_init();
+
+	curl_setopt($cURL, CURLOPT_URL, $url);
+	curl_setopt($cURL, CURLOPT_POST, true);
+	curl_setopt($cURL, CURLOPT_RETURNTRANSFER, 1);
+
+	curl_setopt($cURL, CURLOPT_HTTPHEADER, array(
+    	'Content-Type: application/json',
+    	'Accept: application/json'
+	));
+
+	$result = curl_exec($cURL);
+
+	curl_close($cURL);
+
+	$result_array = json_decode($result, true);
+
+	return $result_array;
+
 }
 ?>

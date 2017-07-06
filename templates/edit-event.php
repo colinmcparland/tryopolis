@@ -1,6 +1,6 @@
 <?
 /*  Template Name:  Edit Event  */
-include('role-redirects/mentor-dashboard.php'); 
+include(dirname(__FILE__) . '/../role-redirects/mentor-dashboard.php'); 
 get_header();
 
 $token = getenv("EB_PERSONAL_TOKEN");

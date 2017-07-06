@@ -370,7 +370,9 @@ header {
         color: #fff;
         background: transparent;
         width: 70%;
-        outline: none !important; }
+        outline: none !important;
+        font-family: "Abel", sans-serif;
+        font-size: 1rem; }
       .formarea form .inputarea label:not(.forcheckbox) {
         color: #fff;
         width: 30%;

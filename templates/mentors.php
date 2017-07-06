@@ -1,6 +1,6 @@
 <?
 /*  Template Name: Mentors Login  */
-include('role-redirects/mentor-login.php');
+include(dirname(__FILE__) . '/../role-redirects/mentor-login.php');
 get_header();
 ?>
 

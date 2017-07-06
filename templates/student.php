@@ -1,6 +1,6 @@
 <?
 /*  Template Name: Student Login  */
-include('role-redirects/student-login.php');
+include(dirname(__FILE__) . '/../role-redirects/student-login.php');
 get_header();
 ?>
 

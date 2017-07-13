@@ -52,8 +52,16 @@
 			}
 		})
 
+		//  Validate student registration password
+		$(".student-signup-box form").submit(function()	{
+			if($("input[name=student-signup-password").val() != $("input[name=student-signup-password-confirm").val()) {
+				if($(".password-confirm-err").length == 0) {
+					$("<p class='password-confirm-err' style='color: red;'>Passwords do not match.</p>").insertAfter(".student-signup-box form input[name=student-signup-password-confirm");
+				}
+				return false;
+			}
+		})
 
-		/*  TODO: Check student password???  */
 
 		//  Scroll to top
 		$(".backtop").click(function()	{
@@ -73,7 +81,7 @@
 		})
 
 		//  Submit placeholder logic
-		$("#mentor-login-form .submitplaceholder, .student-login-form .submitplaceholder").click(function()	{
+		$("#mentor-login-form .submitplaceholder, #student-login .submitplaceholder").click(function()	{
 			$(this).next().click();
 		})
 

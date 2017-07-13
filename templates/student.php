@@ -11,9 +11,16 @@ get_header();
 			<h2>Student Login</h2>
 			<span>Welcome back</span>
 			<input required type="email" placeholder="email" type="email" name="student-login-email">
-			<input type="password" placeholder="password" type="password" name="student-login-password">
+			<input required type="password" placeholder="password" type="password" name="student-login-password">
 			<div class="submitplaceholder">Login</div>
 			<input type="submit" style="display: none;" name="student-login-submit" />
+			<?
+			if($loginerr == 1) {
+				?>
+				<p>There was an error logging you in.  Please check your credentials and try again.</p>
+				<?
+			}
+			?>
 			<span>Don't have an account?  <a href="#signup">Sign up here!</a></span>
 		</form>
 		<img src='/wp-content/uploads/2017/06/woman.png' />
@@ -32,26 +39,26 @@ get_header();
 <div class="students-rows narrow">
 	<div class="row">
 		<div class="col">
-			<h2>Step outside of your classroom into the world beyond.  Expamnd your knowledge through hands-on experience!</h2>
+			<? echo get_field("first_row_text"); ?>
 			<a href="#">Learn More</a>
 		</div>
 		<div class="col">
-			<img src='/wp-content/uploads/2017/06/woman.png' />
+			<img src='/wp-content/uploads/2017/07/Student01.png' />
 		</div>
 	</div>
 	<div class="row">
 		<div class="col">
-			<img src='/wp-content/uploads/2017/06/woman.png' />
+			<img src='/wp-content/uploads/2017/07/Student02.png' />
 		</div>
 		<div class="col">
-			<h2>Let your personal interests and curiosity drive your exploration and learning.  It's fun!</h2>
+			<? echo get_field("second_row_text"); ?>
 		</div>
 	</div>
 </div>
 
 
 <div class="main-content narrow">
-<h2 style="text-align: center;">There's no pressure to know what you want to do in life.  Try many things!</h2>
+<? echo get_field("call_out_text"); ?>
 <a name="signup"></a>
 <div class="student-signup-box">
 	<h2>Sign Up Now</h2>

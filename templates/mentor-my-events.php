@@ -33,11 +33,11 @@ get_header();
 
 				/*  Get the authors name from organizer ID  */
 				$author = tb_get_mentor_by_eventbrite_id($mentor_id)[0]['name'];
-
+				$image = get_the_post_thumbnail_url($event['post'], 'full');
 				$link = get_the_permalink($event['post']);
 				/*  The post belongs to this user.  Display a tile.  */
 				echo <<<EOT
-					<div class="item">
+					<div class="item" style="background-image: url('$image');">
 						<div class="image">
 					
 						</div>

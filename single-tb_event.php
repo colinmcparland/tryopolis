@@ -18,6 +18,9 @@ $user = get_userdata(get_current_user_ID());
 
 <div class="narrow single-event">
 	<div>
+	<img src="<? echo the_post_thumbnail_url('full');  ?>" />
+	</div>
+	<div>
 		<span>Description</span>
 		<p><? echo $event['description']['text']; ?></p>
 	</div>

@@ -6,7 +6,7 @@ get_header();
 	<div class="narrow">
 		<h2>Featured Blog Posts</h2>
 		<div class="blog-header-slider">
-		<? include('scripts/featured-posts.php'); ?>
+		<? include(dirname(__FILE__) . '/../scripts/featured-posts.php'); ?>
 		</div>
 	</div>
 </div>
@@ -23,12 +23,12 @@ get_header();
 
 <div class="narrow latest-posts">
 	<h2>Latest Posts</h2>
-	<? include('scripts/latest-posts.php'); ?>
+	<? include(dirname(__FILE__) . '/../scripts/latest-posts.php'); ?>
 </div>
 
 <div class="wide all-posts">
 	<h2>All Our Posts</h2>
-	<? include('scripts/all-posts.php'); ?>
+	<? include(dirname(__FILE__) . '/../scripts/all-posts.php'); ?>
 </div>
 
 <div class="backtop">

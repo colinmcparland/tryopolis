@@ -19,8 +19,8 @@ $venue = tb_get_eventbrite_venue($event['venue_id'], $token);
 $nicestartdate = date("m/d/Y", strtotime(explode('T', $event['start']['local'])[0]));
 $niceenddate = date("m/d/Y", strtotime(explode('T', $event['end']['local'])[0]));
 
-$nicestarttime = date("H:i A", strtotime(explode('T', $event['start']['local'])[1]));
-$niceendtime = date("H:i A", strtotime(explode('T', $event['end']['local'])[1]));
+$nicestarttime = date("g:i A", strtotime(explode('T', $event['start']['local'])[1]));
+$niceendtime = date("g:i A", strtotime(explode('T', $event['end']['local'])[1]));
 
 $featured_image_url = the_post_thumbnail_url();
 ?>

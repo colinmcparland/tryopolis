@@ -23,6 +23,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.alignright {
+	float: right;
+}
+
 body * {
 	font-family: $droid;
 	position: relative;
@@ -335,7 +339,7 @@ header {
 		min-width: 300px;
 
 		.image {
-			background: $orange;
+			background-size: cover;
 			height:150px;
 			width: 100%;
 		}
@@ -591,9 +595,9 @@ footer {
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
-		-webkit-box-align: center;
-		    -ms-flex-align: center;
-		        align-items: center;
+		-webkit-box-align: end;
+		    -ms-flex-align: end;
+		        align-items: flex-end;
 		-webkit-box-pack: justify;
 		    -ms-flex-pack: justify;
 		        justify-content: space-between;
@@ -750,6 +754,10 @@ footer {
 		        align-items: flex-end;
 	}
 
+	video {
+		max-width: 100%;
+	}
+
 	* {
 		color: #fff;
 	}
@@ -768,7 +776,7 @@ footer {
     	        align-items: center;
 	}
 
-	span {
+	p {
 		font-size: 1.1rem;
     	line-height: 2rem;	}
 
@@ -1831,6 +1839,13 @@ footer {
 }
 
 @media screen and (max-width: $mobile) {
+	.alignright {
+		float: none;
+		display: block;
+		margin: 0 auto;
+		max-height: 350px;
+		width: auto;
+	}
 	.formarea {
 		form {
 			.flex-left, .flex-right {

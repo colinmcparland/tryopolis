@@ -11,11 +11,11 @@ the_post();
 <div class="page-header-container header-home">
 	<div class="narrow">
 		<div>
-			<h2>Ignite Your Curiosity!</h2>
-			<span>Meet new people and learn together.  Imagine the possibilities!  Try it, share it, have fun with it.</span>
-			<a href="#">Learn More</a>
+			<video playsinline autoplay muted loop id="nameplate">
+        		<source src="/wp-content/uploads/2017/07/Animated.webm" type="video/webm">
+        		<source src="/wp-content/uploads/2017/07/Animated.mp4" type="video/mp4">
+    		</video>
 		</div>
-		<img src='/wp-content/uploads/2017/06/woman.png' />
 	</div>
 </div>
 
@@ -38,8 +38,7 @@ the_post();
 			<h2>Students</h2>
 		</div>
 		<div class="content">
-			<h3>Title Here</h3>
-			<span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</span>
+			<? echo get_field("student_box_text"); ?>
 			<a href="/students">Enter Here</a>
 		</div>
 	</div>
@@ -48,8 +47,7 @@ the_post();
 			<h2>Mentors</h2>
 		</div>
 		<div class="content">
-			<h3>Title Here</h3>
-			<span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</span>
+			<? echo get_field("mentor_box_text"); ?>
 			<a href="/mentors">Enter Here</a>
 		</div>
 	</div>
@@ -69,10 +67,11 @@ the_post();
 			$eb_event = tb_get_eventbrite_event($event['id'], $token);
 			$author = tb_get_mentor_by_eventbrite_id($event['organizer'])[0]['name'];
 			$link = get_the_permalink($event['post']);
+			$image = get_the_post_thumbnail_url($event['post'], 'full');
 			?>
 			
 				<div class="item">
-					<div class="image">
+					<div class="image" style="background-image: url('<? echo $image; ?>');">
 			
 					</div>
 					<div class="title">

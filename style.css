@@ -8,6 +8,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.alignright {
+  float: right; }
+
 body * {
   font-family: "Droid Sans Mono", monospace;
   position: relative; }
@@ -254,7 +257,7 @@ header {
     margin: 25px 0;
     min-width: 300px; }
     .events .item .image {
-      background: #fcb726;
+      background-size: cover;
       height: 150px;
       width: 100%; }
     .events .item .title {
@@ -440,9 +443,9 @@ footer {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between; }
@@ -553,6 +556,8 @@ footer {
   -webkit-box-align: end;
   -ms-flex-align: end;
   align-items: flex-end; }
+.header-home video {
+  max-width: 100%; }
 .header-home * {
   color: #fff; }
 .header-home .narrow > div {
@@ -567,7 +572,7 @@ footer {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center; }
-.header-home span {
+.header-home p {
   font-size: 1.1rem;
   line-height: 2rem; }
 .header-home a {
@@ -1322,6 +1327,13 @@ footer {
   .header-blog .featured-slide h2 {
     font-size: 2.3rem; } }
 @media screen and (max-width: 550px) {
+  .alignright {
+    float: none;
+    display: block;
+    margin: 0 auto;
+    max-height: 350px;
+    width: auto; }
+
   .formarea form .flex-left, .formarea form .flex-right {
     padding: 0;
     width: 100%; }

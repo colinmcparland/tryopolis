@@ -12,6 +12,7 @@
 		$date = get_the_date('F d, Y');
 		$author = get_the_author();
 		$link = get_the_permalink();
+		$img = get_the_post_thumbnail_url('full');
 
 		$excerpt = get_the_excerpt();
 		$excerpt = strip_tags($excerpt);
@@ -30,7 +31,7 @@
 
 		echo <<<EOT
 			<div class="item">
-					<div class="image">
+					<div class="image" style="background-image: url('$image');">
 					</div>
 					<div class="title">
 						<h2>$title</h2>

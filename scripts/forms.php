@@ -40,6 +40,23 @@ if(isset($_POST['mentor-signup-submit'])) {
 	/*  Create the user  */
 	$user_id = wp_create_user($email, $password, $email);
 
+	/*  If the user already exists, show error message  */
+	if(is_wp_error($user_id)) {
+		?>
+	<script>
+	jQuery(document).ready(function()	{
+		if(jQuery(".signup-err").length == 0) {
+			jQuery("<p class='signup-err'>There seems to be an error creating your account.  Are you sure you're not already registered?</p>").insertAfter(".mentor-signup-box form input[name=mentor-signup-password-confirm]");
+		}
+		var scrolllocation = jQuery(".mentor-signup-box").offset().top;
+		jQuery("html, body").animate({
+			scrollTop: scrolllocation
+		})
+	})
+	</script>
+		<?
+	}
+
 	$update_args = array(
 			"ID" => $user_id, 
 			"role" => "mentor",
@@ -102,7 +119,20 @@ if(isset($_POST['mentor-signup-submit'])) {
 	}
 	else if($exists_flag == 1) {
 		/*  Remove the user we just created, since they already exist in EB.  */
-
+		// wp_delete_user($user_id);
+		?>
+	<script>
+	jQuery(document).ready(function()	{
+		if(jQuery(".signup-err").length == 0) {
+			jQuery("<p class='signup-err'>There seems to be an error creating your account.  Are you sure you're not already registered?</p>").insertAfter(".mentor-signup-box form input[name=mentor-signup-password-confirm]");
+		}
+		var scrolllocation = jQuery(".mentor-signup-box").offset().top;
+		jQuery("html, body").animate({
+			scrollTop: scrolllocation
+		})
+	})
+	</script>
+		<?
 
 	}
 
@@ -119,20 +149,37 @@ if(isset($_POST['student-signup-submit'])) {
 
 	$user_id = wp_create_user($email, $password, $email);
 
-	$update_args = array(
-			"ID" => $user_id, 
-			"role" => "student",
-			"first_name" => $fname,
-			"last_name" => $lname
-		);
+	if(is_wp_error($user_id)) {
+		?>
+	<script>
+	jQuery(document).ready(function()	{
+		if(jQuery(".signup-err").length == 0) {
+			jQuery("<p class='signup-err'>There seems to be an error creating your account.  Are you sure you're not already registered?</p>").insertAfter(".student-signup-box form input[name=student-signup-password-confirm]");
+		}
+		var scrolllocation = jQuery(".student-signup-box").offset().top;
+		jQuery("html, body").animate({
+			scrollTop: scrolllocation
+		})
+	})
+	</script>
+		<?
+	}
+	else {
+		$update_args = array(
+				"ID" => $user_id, 
+				"role" => "student",
+				"first_name" => $fname,
+				"last_name" => $lname
+			);
 
-	wp_update_user($update_args);
+		wp_update_user($update_args);
 
-	/*  Log the user in  */
-	wp_set_current_user($user_id);
-    wp_set_auth_cookie($user_id);
+		/*  Log the user in  */
+		wp_set_current_user($user_id);
+		wp_set_auth_cookie($user_id);
 
-	header('Location: //' . $_SERVER['HTTP_HOST'] . '/student-dashboard/');
+		header('Location: //' . $_SERVER['HTTP_HOST'] . '/student-dashboard/');
+	}
 }
 
 
@@ -403,9 +450,6 @@ if(isset($_POST['student-login-submit'])) {
     	wp_set_auth_cookie($user->id);
     	wp_safe_redirect("//" . $_SERVER['HTTP_HOST'] . "/student-dashboard");
 	}
-	else {
-		echo "No match";
-	}
 
 
 }
@@ -422,9 +466,6 @@ if(isset($_POST['mentor-login-submit'])) {
 		wp_set_current_user($user->id);
     	wp_set_auth_cookie($user->id);
     	wp_safe_redirect("//" . $_SERVER['HTTP_HOST'] . "/mentor-dashboard/");
-	}
-	else {
-		echo "No match";
 	}
 
 }

@@ -35,6 +35,13 @@ function theme_enqueue_custom_scripts()	{
 
 }
 
+/*  Remove the WYSIWYG editor on 'Event' custom posts  */
+add_action('init', 'init_remove_support',100);
+function init_remove_support(){
+    $post_type = 'tb_event';
+    remove_post_type_support( $post_type, 'editor');
+}
+
 /*  Get all the events from the database and return each row in an array.  */
 function tb_get_all_events() {
 	global $wpdb;

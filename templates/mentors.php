@@ -10,13 +10,20 @@ get_header();
 		<form id="mentor-login-form" method="POST">
 			<h2>Mentor Login</h2>
 			<span>Welcome back</span>
-			<input type="email" placeholder="email" required name="mentor-login-email">
+			<input required type="email" placeholder="email" required name="mentor-login-email">
 			<input required type="password" placeholder="password" name="mentor-login-password">
 			<div class="submitplaceholder">Login</div>
 			<input type="submit" style="display: none;" name="mentor-login-submit"/>
+			<?
+			if($loginerr == 1) {
+				?>
+				<p>There was an error logging you in.  Please check your credentials and try again.</p>
+				<?
+			}
+			?>
 			<span>Don't have an account?  <a href="#signup">Sign up here!</a></span>
 		</form>
-		<img src='/wp-content/uploads/2017/06/woman.png' />
+		<img src='/wp-content/uploads/2017/07/Mentor01.png' />
 	</div>
 </div>
 
@@ -53,7 +60,6 @@ get_header();
 		</div>
 	</div>
 </div>
-
 
 <? echo apply_filters('the_content', the_field('lower_content')); ?>
 </div>

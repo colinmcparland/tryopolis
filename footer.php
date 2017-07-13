@@ -6,15 +6,15 @@
 		<div class="flex-left">
 			<div class="inputarea">
 				<label>First Name:</label>
-				<input type="text" name="footer-fname" />
+				<input required type="text" name="footer-fname" />
 			</div>
 			<div class="inputarea">
 				<label>Last Name:</label>
-				<input type="text" name="footer-lname" />
+				<input required type="text" name="footer-lname" />
 			</div>
 			<div class="inputarea">
 				<label>Email:</label>
-				<input type="email" name="footer-email" />
+				<input required type="email" name="footer-email" />
 			</div>
 			<!-- <div class="inputarea">
 				<input type="checkbox" />

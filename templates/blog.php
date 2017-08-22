@@ -11,7 +11,6 @@ get_header();
 	</div>
 </div>
 
-
 <div class="icons narrow">
 	<img src="/wp-content/uploads/2017/05/icon1.png" />
 	<img src="/wp-content/uploads/2017/05/icon2.png" />

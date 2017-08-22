@@ -1,0 +1,11 @@
+#wpbody-content {
+  padding: 0 25px;
+  box-sizing: border-box; }
+  #wpbody-content table {
+    width: 100%; }
+    #wpbody-content table td, #wpbody-content table tr, #wpbody-content table th {
+      padding: 5px;
+      box-sizing: border-box;
+      border: 1px solid #000; }
+    #wpbody-content table td {
+      background-color: #fff; }

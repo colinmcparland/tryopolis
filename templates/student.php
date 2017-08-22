@@ -38,17 +38,20 @@ get_header();
 
 <div class="students-rows narrow">
 	<div class="row">
+		<span>Tryopolis is an exciting new way for students to connect with community partners for hands-on learning. You’ll feel supported and encouraged by community partners in your journey of self-discovery.</span>
+	</div>
+	<div class="row">
 		<div class="col">
 			<? echo get_field("first_row_text"); ?>
-			<a href="#">Learn More</a>
+			<a href="#student-about">Learn More</a>
 		</div>
 		<div class="col">
-			<img src='/wp-content/uploads/2017/07/Student01.png' />
+			<img src='/wp-content/uploads/2017/07/Student01-1.png' />
 		</div>
 	</div>
 	<div class="row">
 		<div class="col">
-			<img src='/wp-content/uploads/2017/07/Student02.png' />
+			<img src='/wp-content/uploads/2017/07/Student02-1.png' />
 		</div>
 		<div class="col">
 			<? echo get_field("second_row_text"); ?>
@@ -67,7 +70,7 @@ get_header();
 			<h3>Create Account</h3>
 			<input required name="student-signup-fname" type="text" placeholder="first name">
 			<input required name="student-signup-lname" type="text" placeholder="last name">
-			<input type="text" placeholder="school">
+			<input required name="student-signup-school" type="text" placeholder="school">
 			<input required name="student-signup-email" type="email" placeholder="email">
 			<input required name="student-signup-password"  type="password" placeholder="password">
 			<input required name="student-signup-password-confirm" type="password" placeholder="confirm password">
@@ -80,6 +83,7 @@ get_header();
 		</div>
 	</div>
 </div>
+<a name="student-about"></a>
 <? echo apply_filters('the_content', get_the_content()); ?>
 </div>
 

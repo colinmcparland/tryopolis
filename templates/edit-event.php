@@ -35,7 +35,7 @@ $featured_image_url = the_post_thumbnail_url();
 <form method="POST">
 <label>Event Name<br /><input type="text" value="<?echo $event['name']['text'];?>" name="edit-event-name"></label>
 
-<label>Event Description<br /><textarea name="edit-event-desc" rows=8><?echo $event['description']['text'];?></textarea></label>
+<label>Event Description<br /><textarea name="edit-event-desc" rows=8><?echo str_replace('\\', '', $event['description']['text']);?></textarea></label>
 
 <label class="half">Start Date<br /><input type="text" class="datepicker" name="edit-event-startdate" value="<?echo $nicestartdate; ?>" /></label>
 

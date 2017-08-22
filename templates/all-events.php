@@ -24,20 +24,24 @@ get_header();
 
 				$link = get_the_permalink($event['post']);
 
+				$img = get_the_post_thumbnail_url($event['post'], 'full');
+
+				$author_link = get_author_posts_url(tb_get_mentor_by_eventbrite_id($event['organizer'])[0]['wp_id']);
+
 			?>
 			
 				<div class="item">
-					<div class="image">
+					<div class="image" style="background-image: url('<? echo $img; ?>');">
 			
 					</div>
 					<div class="title">
 						<h2><? echo $eb_event['name']['text']; ?></h2>
 					</div>
 					<div class="meta">
-						<span>By: <? echo $author; ?></span>	
+						<a href='<? echo $author_link; ?>'><span>By: <? echo $author; ?></span></a>
 					</div>
 					<div class="content">
-						<? echo htmlspecialchars($eb_event['description']['text']); ?>
+						<? echo str_replace('\\', '', $eb_event['description']['text']); ?>
 					</div>
 					<a href='<? echo $link; ?>'>Read More</a>
 				</div>

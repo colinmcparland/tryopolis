@@ -12,8 +12,8 @@ the_post();
 	<div class="narrow">
 		<div>
 			<video playsinline autoplay muted loop id="nameplate">
-        		<source src="/wp-content/uploads/2017/07/Animated.webm" type="video/webm">
-        		<source src="/wp-content/uploads/2017/07/Animated.mp4" type="video/mp4">
+        		<source src="/wp-content/uploads/2017/07/Animated-1.webm" type="video/webm">
+        		<source src="/wp-content/uploads/2017/07/Animated-1.mp4" type="video/mp4">
     		</video>
 		</div>
 	</div>
@@ -68,6 +68,7 @@ the_post();
 			$author = tb_get_mentor_by_eventbrite_id($event['organizer'])[0]['name'];
 			$link = get_the_permalink($event['post']);
 			$image = get_the_post_thumbnail_url($event['post'], 'full');
+			$author_link = get_author_posts_url(tb_get_mentor_by_eventbrite_id($event['organizer'])[0]['wp_id']);
 			?>
 			
 				<div class="item">
@@ -78,10 +79,10 @@ the_post();
 						<h2><? echo $eb_event['name']['text']; ?></h2>
 					</div>
 					<div class="meta">
-						<span>By: <? echo $author; ?></span>	
+						<a href='<? echo $author_link; ?>'><span>By: <? echo $author; ?></span></a>
 					</div>
 					<div class="content">
-						<? echo htmlspecialchars($eb_event['description']['text']); ?>
+						<? echo str_replace('\\', '', $eb_event['description']['text']); ?>
 					</div>
 					<a target="_blank" href="<?echo get_the_permalink($event['post']); ?>">Read More</a>
 				</div>

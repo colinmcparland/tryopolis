@@ -47,7 +47,7 @@ get_header();
 			<h3>Create Account</h3>
 			<input required name="mentor-signup-fname" type="text" placeholder="first name">
 			<input required name="mentor-signup-lname" type="text" placeholder="last name">
-			<input type="text" placeholder="school">
+			<input required name="mentor-signup-business" type="text" placeholder="business">
 			<input required name="mentor-signup-email" type="email" placeholder="email">
 			<input required name="mentor-signup-password"  type="password" placeholder="password">
 			<input required name="mentor-signup-password-confirm" type="password" placeholder="confirm password">

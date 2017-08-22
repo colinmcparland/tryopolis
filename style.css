@@ -4,7 +4,7 @@ Template: blankslate
 */
 body {
   margin: 0;
-  font-size: 14px;
+  font-size: 18px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
@@ -12,7 +12,7 @@ body {
   float: right; }
 
 body * {
-  font-family: "Droid Sans Mono", monospace;
+  font-family: "Droid Sans", sans-serif;
   position: relative; }
 
 #wrapper {
@@ -20,7 +20,10 @@ body * {
 
 a {
   display: block;
-  text-decoration: none !important; }
+  text-decoration: none !important;
+  color: inherit; }
+  a:hover {
+    color: #fcb726; }
 
 img {
   max-width: 100%;
@@ -176,7 +179,7 @@ header {
   padding: 50px 0; }
 
 .welcome {
-  font-family: "Droid Sans Mono", monospace; }
+  font-family: "Droid Sans", sans-serif; }
   .welcome h2 {
     color: #fcb726; }
 
@@ -274,7 +277,7 @@ header {
           font-size: 1.2rem; }
         .events .item .meta span:nth-child(2) {
           font-size: 0.9rem; }
-    .events .item a {
+    .events .item > a {
       color: #fcb726;
       background-color: transparent;
       border: 2px solid #fcb726;
@@ -287,7 +290,7 @@ header {
       -webkit-transition: .3s;
       transition: .3s;
       cursor: pointer; }
-      .events .item a:hover {
+      .events .item > a:hover {
         color: #DB9F21;
         border-color: #DB9F21; }
 
@@ -356,6 +359,13 @@ header {
       -ms-flex-direction: column;
       flex-direction: column;
       width: 50%; }
+      .formarea form .flex-right textarea {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid #fff;
+        outline: none;
+        font-size: 1.3rem;
+        font-family: "Abel", sans-serif;
+        cursor: text; }
     .formarea form .inputarea {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -375,7 +385,8 @@ header {
         width: 70%;
         outline: none !important;
         font-family: "Abel", sans-serif;
-        font-size: 1rem; }
+        font-size: 1rem;
+        border-radius: 0px; }
       .formarea form .inputarea label:not(.forcheckbox) {
         color: #fff;
         width: 30%;
@@ -461,7 +472,8 @@ footer {
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
-    max-width: 300px; }
+    max-width: 300px;
+    padding-bottom: 25px; }
     .header-mentors form *, .header-students form *, .header-home form *, .header-single-post form * {
       color: #fff; }
     .header-mentors form h2, .header-students form h2, .header-home form h2, .header-single-post form h2 {
@@ -520,6 +532,11 @@ footer {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between; }
+  .students-rows .row span {
+    font-size: 2rem;
+    font-family: "Abel", sans-serif;
+    color: #fcb726;
+    text-align: center; }
 .students-rows .col {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -536,7 +553,7 @@ footer {
   margin: 0 25px; }
 .students-rows h2 {
   font-size: 1.3rem;
-  font-family: "Droid Sans Mono", monospace; }
+  font-family: "Droid Sans", sans-serif; }
 .students-rows a {
   padding: 9px 30px;
   color: inherit;
@@ -783,7 +800,7 @@ footer {
       filter: brightness(90%); }
   .backtop span {
     color: #000;
-    font-family: "Droid Sans Mono", monospace;
+    font-family: "Droid Sans", sans-serif;
     font-size: 1rem; }
 
 /*  Single blog post styles  */
@@ -818,7 +835,7 @@ footer {
   .single.main-content p {
     margin: 1rem 0; }
   .single.main-content strong {
-    font-family: "Droid Sans Mono", monospace; }
+    font-family: "Droid Sans", sans-serif; }
   .single.main-content a {
     display: inline-block;
     color: #fcb726;
@@ -893,7 +910,7 @@ footer {
     -webkit-box-sizing: border-box;
     box-sizing: border-box; }
     .author-box .col * {
-      font-family: "Droid Sans Mono", monospace; }
+      font-family: "Droid Sans", sans-serif; }
     .author-box .col h2 {
       color: #fff;
       font-size: 1.3rem;
@@ -954,7 +971,7 @@ footer {
       box-sizing: border-box;
       border: none;
       background-color: #fff;
-      font-family: "Droid Sans Mono", monospace;
+      font-family: "Droid Sans", sans-serif;
       outline: none;
       width: 70%; }
       .single-newsletter span input[type=submit] {
@@ -1054,7 +1071,7 @@ footer {
 .main-content p {
   font-size: 1rem;
   line-height: 1.5rem;
-  margin: 3rem 0; }
+  margin: 2rem 0; }
 .main-content .mentor-signup-box, .main-content .student-signup-box {
   padding: 25px 0;
   -webkit-box-sizing: border-box;
@@ -1234,9 +1251,35 @@ footer {
     font-size: 2rem; }
 
 /*  Style for mentor and student all events page  */
-.my-events, all-events {
+.my-events, .all-events {
   padding: 100px 0; }
 
+/*  Style for attendance sheet page  */
+.header-attendance h3 {
+  color: #fff;
+  text-align: center; }
+
+.attendance table {
+  width: 100%;
+  padding: 50px 0; }
+  .attendance table * {
+    font-family: "Abel", sans-serif;
+    font-size: 1.3rem; }
+  .attendance table th {
+    font-size: 1.6rem;
+    padding: 10px 0; }
+  .attendance table td {
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid #000; }
+
+@media screen and (min-width: 1281px) {
+  .header-home video {
+    width: 450px; }
+
+  .header-home .narrow > div {
+    margin: 0 auto; } }
 @media screen and (max-width: 800px) {
   .narrow, .wide {
     padding-left: 25px;
@@ -1259,7 +1302,9 @@ footer {
       margin: 25px 0;
       cursor: pointer;
       -webkit-transition: 0.3s;
-      transition: 0.3s; }
+      transition: 0.3s;
+      -webkit-filter: brightness(100%);
+      filter: brightness(100%); }
       header .menu-icon:hover {
         -webkit-filter: brightness(80%);
         filter: brightness(80%); }
@@ -1327,6 +1372,9 @@ footer {
   .header-blog .featured-slide h2 {
     font-size: 2.3rem; } }
 @media screen and (max-width: 550px) {
+  .portalitem .content p {
+    line-height: 1.9rem; }
+
   .alignright {
     float: none;
     display: block;
@@ -1349,9 +1397,12 @@ footer {
     -ms-flex-direction: column;
     flex-direction: column; }
   .students-rows h2 {
-    font-size: 1rem; }
+    font-size: 1rem;
+    text-align: center; }
   .students-rows a {
     margin: 15px 0; }
+  .students-rows img {
+    margin: 25px 0; }
 
   .single-event .third {
     width: 100%; }

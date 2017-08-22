@@ -33,14 +33,52 @@ function theme_enqueue_custom_scripts()	{
 
 	wp_enqueue_script('jquery-timepicker-script');
 
+	wp_register_style('google-fonts-montserrat', 'https://fonts.googleapis.com/css?family=Montserrat:300');
+
+	wp_enqueue_style('google-fonts-montserrat');
+
 }
 
-/*  Remove the WYSIWYG editor on 'Event' custom posts  */
-add_action('init', 'init_remove_support',100);
-function init_remove_support(){
-    $post_type = 'tb_event';
-    remove_post_type_support( $post_type, 'editor');
+// Student Records Admin Page
+
+//  Add the new page
+add_action('admin_menu', 'student_records_admin_menu');
+function student_records_admin_menu() {
+    add_menu_page( 'Student Records', 'Student Records', 'manage_options', 'student-records', 'student_records_admin_page', 'dashicons-editor-ol', 25  );
 }
+
+// Load the template
+function student_records_admin_page() {
+	include("templates/student-records.php");
+}
+
+//  Load the scripts
+function load_student_records_style($hook) {
+    if($hook != 'toplevel_page_student-records') {
+        return;
+    }
+    wp_enqueue_style( 'student_records_css', get_stylesheet_directory_uri() . '/student-records-style.css' );
+}
+add_action( 'admin_enqueue_scripts', 'load_student_records_style' );
+
+/*  Add an 'Organization' field to the user meta  */
+
+function modify_contact_methods($profile_fields) {
+
+	// Add new fields
+	$profile_fields['organization'] = 'Organization';
+
+	return $profile_fields;
+
+}
+add_filter('user_contactmethods', 'modify_contact_methods');
+
+// /*  Remove the WYSIWYG editor on 'Event' custom posts  */
+// add_action('init', 'init_remove_support',100);
+// function init_remove_support(){
+//     $post_type = 'tb_event';
+//     remove_post_type_support( $post_type, 'editor');
+// }
 
 /*  Get all the events from the database and return each row in an array.  */
 function tb_get_all_events() {
@@ -203,13 +241,13 @@ function tb_no_admin_access()
 }
 add_action( 'admin_init', 'tb_no_admin_access', 100 );
 
-// add_action('after_setup_theme', 'remove_admin_bar');
+add_action('after_setup_theme', 'remove_admin_bar');
 
-// function remove_admin_bar() {
-// if (current_user_can('mentor') || current_user_can('mentor') || !is_admin()) {
-//   show_admin_bar(false);
-// }
-// }
+function remove_admin_bar() {
+if (current_user_can('mentor') || current_user_can('mentor') || !is_admin()) {
+  show_admin_bar(false);
+}
+}
 
 
 
@@ -549,16 +587,16 @@ function tb_remove_rsvp($student_id, $event_id) {
 
 
 /*  Function to update the number of tickets available for an event  */
-function tb_update_tickets($event_id, $token, $action) {
+function tb_update_tickets($event_id, $token, $action, $magnitude = 1) {
 	$ticket_object = tb_get_ticket_class($event_id, $token);
 	$ticket_id = $ticket_object['ticket_classes'][0]['id'];
 	$numleft = $ticket_object['ticket_classes'][0]['quantity_total'];
-	
+
 	if($action == 'increment') {
-		$numleft++;
+		$numleft+=$magnitude;
 	}
 	else if($action == 'decrement') {
-		$numleft--;
+		$numleft-=$magnitude;
 	}
 
 	$url = 'https://www.eventbriteapi.com/v3/events/' . $event_id . '/ticket_classes/' . $ticket_id . '/?token=' . $token;
@@ -697,5 +735,48 @@ function tb_publish_eb_event($token, $id) {
 
 	return $result_array;
 
+}
+
+/*  Get all the RSVPs  */
+function tb_get_all_rsvp() {
+	global $wpdb;
+	$querystr = "SELECT * FROM wp_tinybird_rsvp";
+	$results = $wpdb->get_results( $querystr, "ARRAY_A" );
+	return $results;
+}
+
+
+/*  Get all the WP students that are RSVP'd to the event  */
+function tb_get_wp_attendees($id) {
+	global $wpdb;
+
+	$eb_id = tb_get_event_by_wp_id($id)[0]['id'];
+
+	$querystr = "SELECT * FROM wp_tinybird_rsvp WHERE event_id='$eb_id'";
+	$results = $wpdb->get_results( $querystr, "ARRAY_A" );
+
+	return $results;
+}
+
+function tb_set_rsvp_confirmed($student_id, $event_id, $confirmed) {
+	global $wpdb;
+
+	$eb_id = tb_get_event_by_wp_id($event_id)[0]['id'];
+
+	$querystr = "UPDATE wp_tinybird_rsvp SET confirmed='$confirmed' WHERE student_id='$student_id' AND event_id='$eb_id'";
+
+	$results = $wpdb->query($querystr);
+
+}
+
+function tb_get_rsvp_confirmed($student_id, $event_id) {
+	global $wpdb;
+
+	$eb_id = tb_get_event_by_wp_id($event_id)[0]['id'];
+
+	$querystr = "SELECT * FROM wp_tinybird_rsvp WHERE event_id='$eb_id' AND student_id='$student_id'";
+	$results = $wpdb->get_results( $querystr, "ARRAY_A" );
+
+	return $results;
 }
 ?>

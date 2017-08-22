@@ -20,6 +20,8 @@
 
 		$tags = get_the_tags();
 
+		$author_link = get_author_posts_url();
+
 		$tags_string = '';
 
 		foreach($tags as $tag) : 
@@ -38,7 +40,7 @@
 					</div>
 					<div class="meta">
 						<span>Date: $date</span>
-						<span>By: $author</span>	
+						<a href='$author_link'><span>By: $author</span></a>
 					</div>
 					<div class="content">$excerpt</div>
 					<a href={$link}>Read More</a>

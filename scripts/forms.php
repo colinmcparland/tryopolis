@@ -32,6 +32,7 @@ if(isset($_POST['footer-form-submit'])) {
 
 /*  Register a mentor from the sign up box  */
 if(isset($_POST['mentor-signup-submit'])) {
+	$organization = $_POST['mentor-signup-business'];
 	$fname = $_POST['mentor-signup-fname'];
 	$lname = $_POST['mentor-signup-lname'];
 	$email = $_POST['mentor-signup-email'];
@@ -61,7 +62,8 @@ if(isset($_POST['mentor-signup-submit'])) {
 			"ID" => $user_id, 
 			"role" => "mentor",
 			"first_name" => $fname,
-			"last_name" => $lname
+			"last_name" => $lname,
+			"organization" => $organization
 		);
 
 	wp_update_user($update_args);
@@ -142,6 +144,7 @@ if(isset($_POST['mentor-signup-submit'])) {
 
 /*  Register a student from the sign up box  */
 if(isset($_POST['student-signup-submit'])) {
+	$organization = $_POST['student-signup-school'];
 	$fname = $_POST['student-signup-fname'];
 	$lname = $_POST['student-signup-lname'];
 	$email = $_POST['student-signup-email'];
@@ -169,7 +172,8 @@ if(isset($_POST['student-signup-submit'])) {
 				"ID" => $user_id, 
 				"role" => "student",
 				"first_name" => $fname,
-				"last_name" => $lname
+				"last_name" => $lname,
+				"organization" => $organization
 			);
 
 		wp_update_user($update_args);
@@ -235,8 +239,6 @@ if(isset($_POST['new-event-submit'])) {
     );
 
     $venue_id = tb_add_eventbrite_venue($venue, $token);
-
-    var_dump($venue_id);
 
     $venue_id = $venue_id['id'];
 
@@ -352,7 +354,23 @@ if(isset($_POST['edit-event-submit'])) {
 
 	tb_update_eventbrite_venue($new_venue, $token);
 
-	/*  TODO: Build the query and update the tickets  */
+	/*  Build the query and update the tickets  */
+	$ticket = tb_get_ticket_class($event['id'], $token);
+	$ticket_quantity = $ticket['ticket_classes'][0]['quantity_total'];
+	$ticket_new_quantity = $_POST['edit-event-ticket-quantity'];
+	$magnitude = 0;
+	$action = 'increment';
+
+	/*  Get the magnitude difference  */
+	if($ticket_quantity > $ticket_new_quantity) {
+		$magnitude = $ticket_quantity - $ticket_new_quantity;
+		$action = 'decrement';
+	}
+	else if($ticket_quantity < $ticket_new_quantity) {
+		$magnitude = $ticket_new_quantity - $ticket_quantity;
+	}
+
+	tb_update_tickets($event['id'], $token, $action, $magnitude);
 
 	/*  Edit the event image  */
 
@@ -468,6 +486,37 @@ if(isset($_POST['mentor-login-submit'])) {
     	wp_safe_redirect("//" . $_SERVER['HTTP_HOST'] . "/mentor-dashboard/");
 	}
 
+}
+
+
+/*  Handle an attendance sheet submission  */
+if(isset($_POST['attendance-sheet-submit'])) {
+	
+	/*  Get all attendees for this event  */
+
+	foreach($_POST as $attendee=>$status) {
+		if(strpos($attendee, 'student-') === false) {
+
+		}	
+		else {
+			/*  Check if this students attendance status has been changed  */
+
+			/*  Get the user info by ID  */
+			$attendee_id = explode('-', $attendee)[1];
+			$user = get_userdata($attendee_id);
+			
+			/*  Check if the users attendance has changed  */
+			$db_confirmed = tb_get_rsvp_confirmed($attendee_id, $_GET['id'])[0]['confirmed'];
+
+			if(empty($db_confirmed) && $status == 'present') {
+				/*  Mark the student present  */
+				tb_set_rsvp_confirmed($attendee_id, $_GET['id'], '1');
+			}
+			else if(!empty($db_confirmed) && $status == 'absent') {
+				tb_set_rsvp_confirmed($attendee_id, $_GET['id'], '');
+			}
+		}
+	}
 }
 
 ?>

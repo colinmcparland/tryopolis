@@ -4,13 +4,13 @@ Template: blankslate
 */
 
 $abel: 'Abel', sans-serif;
-$droid:'Droid Sans Mono', monospace;
+$droid:'Droid Sans', sans-serif;
 
 $smallmobile: 450px;
 $mobile: 550px;
 $tablet: 800px;
 $laptop: 1000px;
-$desktop: 1200px;
+$desktop: 1281px;
 
 $grey: #dfdfdf;
 $orange: #fcb726;
@@ -18,7 +18,7 @@ $darkorange: #DB9F21;
 
 body {
 	margin: 0;
-	font-size: 14px;
+	font-size: 18px;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -40,6 +40,11 @@ body * {
 a {
 	display: block;
 	text-decoration: none !important;
+	color: inherit;
+
+	&:hover {
+		color: $orange;
+	}
 }
 
 img {
@@ -369,7 +374,7 @@ header {
 			}
 		}
 
-		a {
+		>a {
 			color: $orange;
 			background-color: transparent;
 			border:2px solid $orange;
@@ -469,6 +474,15 @@ header {
 			    -ms-flex-direction: column;
 			        flex-direction: column;
 			width: 50%;
+
+			textarea {
+				background: rgba(255,255,255,0.95);
+				border: 1px solid #fff;
+				outline: none;
+				font-size: 1.3rem;
+				font-family: $abel;
+				cursor: text;
+			}
 		}
 
 		.inputarea {
@@ -492,6 +506,7 @@ header {
 				outline: none !important;
 				font-family: $abel;
 				font-size: 1rem;
+				border-radius: 0px;
 			}
 
 			label:not(.forcheckbox) {
@@ -589,8 +604,9 @@ footer {
 /*  Page header for the mentors page  */
 
 .header-mentors {
-	padding-bottom: 0px;
 
+	padding-bottom: 0px;
+	
 	>div {
 		display: -webkit-box;
 		display: -ms-flexbox;
@@ -615,6 +631,7 @@ footer {
 		    -ms-flex-align: start;
 		        align-items: flex-start;
 		max-width: 300px;
+		padding-bottom: 25px;
 
 		* {
 			color: #fff;
@@ -700,6 +717,13 @@ footer {
 		-webkit-box-pack: justify;
 		    -ms-flex-pack: justify;
 		        justify-content: space-between;
+
+		span {
+			font-size: 2rem;
+			font-family: $abel;
+			color: $orange;
+			text-align: center;
+		}
 	}
 
 	.col {
@@ -1445,7 +1469,7 @@ footer {
 	p {
 		font-size: 1rem;
 		line-height: 1.5rem;
-		margin:3rem 0;
+		margin:2rem 0;
 	}
 
 	.mentor-signup-box {
@@ -1550,9 +1574,6 @@ footer {
 
 /*  Style for the Mentor dashboard page  */
 
-.header-mentor-dashboard, .header-student-dashboard, .header-new-event, .header-single-event, .header-edit-event, .header- {
-
-}
 
 .mentor-dashboard, .student-dashboard {
 
@@ -1698,8 +1719,53 @@ footer {
 }
 
 /*  Style for mentor and student all events page  */
-.my-events, all-events {
+.my-events, .all-events {
 	padding:100px 0;
+}
+
+
+/*  Style for attendance sheet page  */
+.header-attendance {
+	h3 {
+		color: #fff;
+		text-align: center;
+	}
+}
+
+.attendance {
+	table {
+		width: 100%;
+		padding: 50px 0;
+
+		* {
+			font-family: $abel;
+			font-size: 1.3rem;
+		}
+
+		th {
+			font-size:1.6rem;
+			padding:10px 0;
+		}
+
+		td {
+			padding: 10px;
+			box-sizing: border-box;
+			text-align: center;
+			border:1px solid #000;
+		}
+	}
+}
+
+
+
+@media screen and (min-width: $desktop) {
+	.header-home video {
+		width: 450px;
+	}
+
+	.header-home .narrow > div {
+		margin: 0 auto;
+	}
 }
 
 
@@ -1730,6 +1796,8 @@ footer {
 			cursor: pointer;
 			-webkit-transition: 0.3s;
 			transition: 0.3s;
+-webkit-filter: brightness(100%);
+				        filter: brightness(100%);
 			&:hover {
 				-webkit-filter: brightness(80%);
 				        filter: brightness(80%);
@@ -1839,6 +1907,11 @@ footer {
 }
 
 @media screen and (max-width: $mobile) {
+
+	.portalitem .content p{
+		line-height: 1.9rem;
+	}
+
 	.alignright {
 		float: none;
 		display: block;
@@ -1875,9 +1948,14 @@ footer {
 		}
 		h2 {
 			font-size: 1rem;
+			text-align: center;
 		}
 		a {
 			margin: 15px 0;
+		}
+
+		img {
+			margin: 25px 0;
 		}
 	}
 
@@ -1938,3 +2016,4 @@ footer {
 		}
 	}
 }
+

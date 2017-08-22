@@ -22,7 +22,7 @@ $user = get_userdata(get_current_user_ID());
 	</div>
 	<div>
 		<span>Description</span>
-		<p><? echo $event['description']['text']; ?></p>
+		<p><? echo str_replace('\\', '', $event['description']['text']); ?></p>
 	</div>
 	<div class="third">
 		<span>Location</span>
@@ -62,11 +62,16 @@ $user = get_userdata(get_current_user_ID());
 		</form>
 	</div>
 	<?
+	/*  If the user owns this event, show edit and attendance sheet buttons.  */
 	elseif((in_array('mentor', $user->roles) && $user->id == $mentor[0]['wp_id']) ||  in_array('administrator', $user->roles)) :
 	?>
 	<div>
 		<a href="/edit-event/?id=<? echo get_the_ID(); ?>" class="action-btn">Edit Event</a>
 	</div>
+	<div>
+		<a href="/attendance/?id=<? echo get_the_ID(); ?>" class="action-btn">Take Attendance</a>
+	</div>
+
 	<?
 	endif;
 	?>

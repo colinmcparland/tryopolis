@@ -2,9 +2,9 @@
 
 	/*  Function to even out all the heights of the blog tiles.  */
 	function adjustBlogTileHeight() {
-		if($(".item").length) {
+		if($(".item:not(.portalitem)").length) {
 			var largest = 0;
-			$(".item").each(function()	{
+			$(".item:not(.portalitem)").each(function()	{
 				if($(this).innerHeight() > largest && $(this).parent().attr("class")) {
 					largest = $(this).innerHeight();
 				}
@@ -27,7 +27,7 @@
 			adjustBlogTileHeight();
 		}
 		else {
-			$(".item .content").css("margin-bottom", '85px');
+			$(".item:not(.portalitem) .content").css("margin-bottom", '85px');
 		}
 
 		$(".datepicker").datepicker();

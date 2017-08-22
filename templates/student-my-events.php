@@ -32,6 +32,10 @@ get_header();
 				$author = tb_get_mentor_by_eventbrite_id($eb_event['organizer_id'])[0]['name'];
 				$image = get_the_post_thumbnail_url($event['post'], 'full');
 				$link = get_the_permalink($event['post']);
+				$author_link = get_author_posts_url(tb_get_mentor_by_eventbrite_id($eb_event['organizer_id'])[0]['wp_id']);
+				$event_desc = str_replace('\\', '', $eb_event['description']['text']);
+
+
 				/*  The post belongs to this user.  Display a tile.  */
 				echo <<<EOT
 					<div class="item">
@@ -43,12 +47,12 @@ get_header();
 						</div>
 						<div class="meta">
 							<span></span>
-							<span>By: $author</span>	
+							<a href='$author_link'</a><span>By: $author</span></a>	
 						</div>
 						<div class="content">
-							{$eb_event['description']['text']}
+							{$event_desc}
 						</div>
-						<a href='$link'>Read More</a>
+						<a href='$link'>Manage</a>
 					</div>
 EOT;
 		endif;
